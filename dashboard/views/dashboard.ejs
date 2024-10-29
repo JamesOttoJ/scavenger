@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Dashboard</title>
+		<style>
+			html { color-scheme: light dark; }
+			body { width: 35em; margin: 0 auto;
+			font-family: Tahoma, Verdana, Arial, sans-serif; }
+		</style>
+  </head>
+	<body>
+    <h1>Welcome <%= username %>!</h1>
+    <% if (username === "admin") { %>
+    <p>The flag is CyberSec{Flag6}</p>
+    <% } else { %>
+    <p>You must be an admin to access my secrets</P>
+    <% } %>
+	</body>
+</html>

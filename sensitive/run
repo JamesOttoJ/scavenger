@@ -1,0 +1,2 @@
+#!/bin/bash
+/var/www/sensitive/venv/bin/flask --app /var/www/sensitive/app.py run -h localhost -p 8002

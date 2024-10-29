@@ -1,0 +1,5 @@
+User-Agent: *
+Disallow: CyberSec{Flag4}
+Disallow: flag.html
+Disallow: sensitive/
+Disallow: app/login

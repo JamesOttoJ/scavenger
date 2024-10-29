@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Intro to CTFs</title>
+		<style>
+			html { color-scheme: light dark; }
+			body { width: 35em; margin: 0 auto;
+			font-family: Tahoma, Verdana, Arial, sans-serif; }
+		</style>
+	<body>
+    <form onsubmit="return checkPassword(event)">
+      <label for="password">Password:</label><br>
+      <input type="text" id="password" name="password"><br>
+      <input type="submit">
+    </form>
+    <p id="result"></p>  
+	</body>
+  <script>
+    function checkPassword(e) {
+      e.preventDefault();
+      resultElement = document.getElementById("result");
+      if (document.getElementById("password").value == "ThePasswordIsPassword") {
+        console.log("Correct");
+        resultElement.style.color = "green";
+        resultElement.textContent = "The flag is: CyberSec{Flag5}";
+      } else {
+        console.log("Incorrect");
+        resultElement.style.color = "red";
+        resultElement.textContent = "Incorrect";
+      }
+      return false;
+    }
+  </script>
+</html>

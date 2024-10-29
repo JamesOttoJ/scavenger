@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Intro to CTFs</title>
+		<style>
+			html { color-scheme: light dark; }
+			body { width: 35em; margin: 0 auto;
+			font-family: Tahoma, Verdana, Arial, sans-serif; }
+		</style>
+	</head>
+  <body>
+    <form onsubmit="return await checkCredentials(event)">
+      <label for="username">Username:</label><br>
+      <input type="text" id="username" name="username"><br>
+      <label for="password">Password:</label><br>
+      <input type="text" id="password" name="password"><br>
+      <input type="submit">
+    </form>
+    <p id="result"></p>    
+	</body>
+  <script>
+    const location = window.location.host;
+    login = async () => {
+      username = document.getElementById("username").value
+      password = document.getElementById("password").value
+      const settings = {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        }
+      };
+      try {
+        const fetchResponse = await fetch(`http://${location}/api/login?username=${username}&password=${password}`, settings);
+        const data = await fetchResponse.json();
+        return data;
+      } catch (e) {
+        return e;
+      }
+
+    }
+
+    checkCredentials = async (e) => {
+      e.preventDefault();
+      resultElement = document.getElementById("result");
+      username = document.getElementById("username").value
+      if (username == "Guest") {
+        window.location.href = `http://${location}/home?user=${username}`;
+      }
+      return false;
+      // loginResult = await login();
+
+      if (loginResult.message == "success") {
+        window.location.href = `http://${location}/home?user=${username}`;
+      } else {
+        console.log("Incorrect");
+        resultElement.style.color = "red";
+        resultElement.textContent = "Username or password incorrect";
+      }
+      return false;
+    }
+  </script>
+</html>

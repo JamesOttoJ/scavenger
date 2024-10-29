@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Sensitive Page</title>
+		<style>
+			html { color-scheme: light dark; }
+			body { width: 35em; margin: 0 auto;
+			font-family: Tahoma, Verdana, Arial, sans-serif; }
+		</style>
+	</head>
+  <body>
+    <form action="/sensitive/" method="POST">
+      <select id="cmd" name="cmd">
+        <option value="whoami">whoami</option>
+        <option value="date">date</option>
+        <option value="systemctl">systemctl</option>
+      </select>
+      <input type="text" id="args" name="args">
+    </form>
+    {% if results and results.returncode == 0 %}
+    <p>Command results:</p>
+    <p style="white-space: pre-wrap">{{ results.stdout }}</p>
+    {% endif %}
+    {% if results and results.returncode == 1 %}
+    <p>Error:</p>
+    <p style="white-space: pre-wrap; color: red">{{ results.stderr }}</p>
+    {% endif %}
+	</body>
+</html>
